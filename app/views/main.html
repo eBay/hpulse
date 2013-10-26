@@ -1,0 +1,17 @@
+<div class="row" ng-controller="MainCtrl">
+	<a href="#" ng-click="selection = 'beans'" onclick="return false;">Show Beans</a>
+	<a href="#" ng-click="selection = 'plots'" onclick="return false;">Show Plots</a>
+
+	<div ng-switch="selection">
+		<div class="row" ng-controller="BeansCtrl" ng-switch-when="beans">
+			<h1>Available Beans</h1>
+			<tree model="displayTree"></tree>
+		</div>
+
+		<div class="row" ng-controller="PlotsCtrl" ng-switch-when="plots">
+			<h1>Plots</h1>
+			<plot ng-repeat="path in plots" path="path"></plot>
+		</div>
+	</div>
+
+</div>
