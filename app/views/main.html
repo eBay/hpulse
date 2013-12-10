@@ -1,17 +1,15 @@
-<div class="row" ng-controller="MainCtrl">
-	<a href="#" ng-click="selection = 'beans'" onclick="return false;">Show Beans</a>
-	<a href="#" ng-click="selection = 'plots'" onclick="return false;">Show Plots</a>
-
-	<div ng-switch="selection">
-		<div class="row" ng-controller="BeansCtrl" ng-switch-when="beans">
-			<h1>Available Beans</h1>
-			<tree model="displayTree"></tree>
-		</div>
-
-		<div class="row" ng-controller="PlotsCtrl" ng-switch-when="plots">
-			<h1>Plots</h1>
-			<plot ng-repeat="path in plots" path="path"></plot>
+<div class="jumbotron">
+	<h3>Get Started:</h3>
+	<div class="row">
+		<div class="col-md-8">
+			<form ng-submit="goToAddress()">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Address e.g. http://localhost:50070/jmx" ng-model="address"/>
+					<span class="input-group-btn">
+						<input type="submit" class="btn btn-primary" value="Connect"/>
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
-
 </div>

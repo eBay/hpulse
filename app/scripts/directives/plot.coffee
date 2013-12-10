@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('jmxRtMonApp').directive 'plot', ->
+angular.module('jmxRtMonApp').directive 'plot', (PlotStore) ->
 	restrict: "E"
 	replace: true
 	scope:
@@ -8,10 +8,7 @@ angular.module('jmxRtMonApp').directive 'plot', ->
 
 	template: """
 	<div class="plot">
-		<h3>{{path.path}}</h3>
-		<div>
-			<code>avg = {{avg_val() | number: 2}}</code>
-		</div>
+		<h3>{{formattedPath()}}</h3>
 		<canvas width="800px" height="200px" class="plot_canvas"></canvas>
 	</div>
 	"""
@@ -27,8 +24,9 @@ angular.module('jmxRtMonApp').directive 'plot', ->
 		smoothie.streamTo(canvas, 300)
 
 		ts = new TimeSeries()
-		$scope.$watch("path.data", ->
-			dp = _.last($scope.path.data)
+		$scope.PlotStore = PlotStore
+		$scope.$watch("PlotStore", ->
+			dp = PlotStore.getLatestDatapoint($scope.path)
 			return unless dp
 			ts.append dp.x.getTime(), dp.y
 		, true)
@@ -38,24 +36,11 @@ angular.module('jmxRtMonApp').directive 'plot', ->
 			linewidth: 3
 		)
 
-		$scope.avg_val = ->
-			sum = _($scope.path.data).reduce ((memo, num) -> 
-				memo + num.y
-			), 0
-			return sum / $scope.path.data.length
-
-		# nv.addGraph ->
-		# 	$scope.chart = nv.models.lineChart()
-
-		# 	$scope.chart.xAxis.axisLabel("Time").tickFormat( (d) -> d3.time.format('%X.%L')(new Date(d)) );
-
-		# 	return $scope.chart
-
-		# $scope.$watch("path.data", ->
-		# 	d3.select(svg).datum([
-		# 		(
-		# 			key: $scope.path.path
-		# 			values: $scope.path.data
-		# 		)
-		# 	]).call($scope.chart)
-		# , true)
+		$scope.formattedPath = ->
+			if $scope.path.match(/^Hadoop:service=/)
+				ret = $scope.path.replace('Hadoop:service=', '')
+				ret = ret.replace(',name=', '.')
+				ret = ret.replace('|', '.')
+				return ret
+			else
+				return $scope.path

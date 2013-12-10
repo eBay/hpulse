@@ -28,7 +28,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-        <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,12 +38,19 @@
           </button>
           <a class="navbar-brand" href="#">Realtime Hadoop Monitor</a>
         </div>
-        <div class="navbar-collapse collapse">
+
+        <div class="navbar-collapse collapse" ng-controller="NavCtrl">
           <ul class="nav navbar-nav">
-            <li ng-class="{active: ($route.current.tabname == 'beans')}"><a href="#/beans">Select Data</a></li>
-            <li ng-class="{active: ($route.current.tabname == 'plots')}"><a href="#/plots">View Plots</a></li>
+            <li ng-class="{active: ($route.current.tabname == 'beans')}">
+              <a class="pointable" ng-click="goToUrl('beans')">Select Data</a>
+            </li>
+            <li ng-class="{active: ($route.current.tabname == 'plots')}">
+              <a class="pointable" ng-click="goToUrl('plots')">View Plots</a>
+            </li>
           </ul>
+
         </div><!--/.nav-collapse -->
+
       </div>
     </div>
 
@@ -93,7 +100,9 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/beans.js"></script>
         <script src="scripts/controllers/plots.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/services/jmx_refresher.js"></script>
+        <script src="scripts/services/config.js"></script>
         <script src="scripts/services/plotstore.js"></script>
         <script src="scripts/directives/plot.js"></script>
         <script src="scripts/directives/tree.js"></script>

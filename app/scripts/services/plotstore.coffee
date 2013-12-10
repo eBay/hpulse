@@ -1,21 +1,21 @@
 'use strict'
 
-angular.module('jmxRtMonApp').factory('PlotStore', ($timeout, $rootScope) ->
+# 
+# The names of active plots are stored in ConfigService
+# The plot data is stored in PlotStore, keyed by name
+#
+angular.module('jmxRtMonApp').factory('PlotStore', ($timeout, $rootScope, ConfigService) ->
 	self = {}
 
-	self.plots = []
+	self.plots = {}
 
-	self.toggle = (path, enable) ->
-		if enable
-			# Add to plots
-			self.plots.push {
-				path: path
-				data: []
-			}
-		else
-			elem = _(self.plots).find (it) -> it.path == path
-			idx = self.plots.indexOf(elem)
-			self.plots.splice(idx, 1) if idx > -1
+	self.addDatapoint = (path, dp) ->
+		self.plots[path] = dp
+
+	self.getLatestDatapoint = (path) ->
+		storage = self.plots[path]
+		return null unless storage
+		return storage
 
 	return self
 )

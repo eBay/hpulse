@@ -6,16 +6,20 @@ angular.module('jmxRtMonApp', [
   'ngSanitize'
 ]).config( ($routeProvider) ->
   $routeProvider
-    .when '/beans',
+    .when '/beans/:config',
       templateUrl: 'views/beans.html'
       controller: 'BeansCtrl'
       tabname: 'beans'
-    .when '/plots',
+    .when '/plots/:config',
       templateUrl: 'views/plots.html'
       controller: 'PlotsCtrl'
       tabname: 'plots'
+    .when '/',
+      templateUrl: 'views/main.html'
+      controller: 'MainCtrl'
+      tabname: 'home'
     .otherwise
-      redirectTo: '/beans'
+      redirectTo: '/'
 ).run( ($rootScope, $route) ->
   # Expose location to the root scope so we can check our url anywhere
   $rootScope.$route = $route
