@@ -19,7 +19,6 @@ angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, Con
 			self.beans = result['beans']
 			$rootScope.$broadcast("JmxRefresher.data_updated", result.beans)
 		).fail(->
-			console.log "Fail triggered"
 			self.error = "Could not connect to '#{self.url()}'. Make sure the location is reachable and returns a json document."
 			$rootScope.$apply()
 		)		
@@ -39,7 +38,6 @@ angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, Con
 
 	self.disconnect = ->
 		self.connected = false
-		console.log "DC"
 
 	return self
 )
