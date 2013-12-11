@@ -9,6 +9,7 @@ angular.module('jmxRtMonApp').controller 'BeansCtrl', ($scope, JmxRefresher, Con
     	children: []
     }
 
+    $scope.JmxRefresher = JmxRefresher
     $scope.$on('$routeChangeSuccess', (next, current) ->
         ConfigService.deserialize($routeParams.config)
         JmxRefresher.disconnect()

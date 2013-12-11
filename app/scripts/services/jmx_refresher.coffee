@@ -3,6 +3,7 @@
 angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, ConfigService) ->
 	self = {}
 
+	self.error = undefined
 	self.connected = false
 	self.url = ->
 		return ConfigService.get(ConfigService.URL_KEY)
@@ -14,9 +15,14 @@ angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, Con
 	self.fetch_data = ->
 		jQuery.getJSON("#{self.url()}?callback=?", (result) ->
 			return unless result
+			self.error = undefined
 			self.beans = result['beans']
 			$rootScope.$broadcast("JmxRefresher.data_updated", result.beans)
-		)
+		).fail(->
+			console.log "Fail triggered"
+			self.error = "Could not connect to '#{self.url()}'. Make sure the location is reachable and returns a json document."
+			$rootScope.$apply()
+		)		
 
 	self.connect = ->
 		return if self.connected # We're already connected

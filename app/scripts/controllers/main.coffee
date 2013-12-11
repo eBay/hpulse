@@ -8,7 +8,6 @@ angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigS
     $scope.address = ""
 
     $scope.goToAddress = ->
-        console.log "Go to path"
         ConfigService.set(ConfigService.URL_KEY, $scope.address)
         $location.path("/beans/#{ConfigService.serialize()}")
 

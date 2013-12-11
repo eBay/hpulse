@@ -4,6 +4,7 @@ angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $ro
 	$scope.plots = ->
 		ConfigService.get(ConfigService.PLOTS_KEY)
 
+	$scope.JmxRefresher = JmxRefresher
 	$scope.$on('$routeChangeSuccess', (next, current) ->
 		ConfigService.deserialize($routeParams.config)
 		JmxRefresher.connect()
