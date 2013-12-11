@@ -1,0 +1,7 @@
+<div class="row">
+	<h1>Plots</h1>
+	<plot ng-repeat="path in plots()" path="path"></plot>
+	<div ng-hide="plots().length" class="alert alert-warning">
+		<strong>No beans selected.</strong> <a href="#/beans">Select</a> some beans first.
+	</div>
+</div>
