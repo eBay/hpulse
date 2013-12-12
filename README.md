@@ -2,6 +2,8 @@
 
 Realtime Monitoring of Hadoop through jmx json
 
+![](http://i.imgur.com/B2E91yt.png)
+
 ## Usage
 
 Visit [hadoopmonitor.herokuapp.com](hadoopmonitor.herokuapp.com)
