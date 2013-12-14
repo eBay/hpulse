@@ -9,7 +9,10 @@ angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigS
 
     $scope.goToAddress = ->
         ConfigService.set(ConfigService.URL_KEY, $scope.address)
-        $location.path("/beans/#{ConfigService.serialize()}")
+        $location.path("/beans")
+        $location.search(
+        	q: ConfigService.serialize()
+        )
 
     return $scope
 )

@@ -6,11 +6,11 @@ angular.module('jmxRtMonApp', [
   'ngSanitize'
 ]).config( ($routeProvider) ->
   $routeProvider
-    .when '/beans/:config',
+    .when '/beans',
       templateUrl: 'views/beans.html'
       controller: 'BeansCtrl'
       tabname: 'beans'
-    .when '/plots/:config',
+    .when '/plots',
       templateUrl: 'views/plots.html'
       controller: 'PlotsCtrl'
       tabname: 'plots'

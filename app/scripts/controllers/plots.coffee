@@ -1,12 +1,12 @@
 'use strict'
 
-angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $routeParams, ConfigService, PlotStore) ->
+angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $location, ConfigService, PlotStore) ->
 	$scope.plots = ->
 		ConfigService.get(ConfigService.PLOTS_KEY)
 
 	$scope.JmxRefresher = JmxRefresher
 	$scope.$on('$routeChangeSuccess', (next, current) ->
-		ConfigService.deserialize($routeParams.config)
+        ConfigService.deserialize($location.search().q)
 		JmxRefresher.connect()
 	)
 

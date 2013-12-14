@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('jmxRtMonApp').controller 'BeansCtrl', ($scope, JmxRefresher, ConfigService, $routeParams) ->
+angular.module('jmxRtMonApp').controller 'BeansCtrl', ($scope, JmxRefresher, ConfigService, $location) ->
     $scope.beans = []
     $scope.tree = {}
     $scope.displayTree = {
@@ -11,7 +11,7 @@ angular.module('jmxRtMonApp').controller 'BeansCtrl', ($scope, JmxRefresher, Con
 
     $scope.JmxRefresher = JmxRefresher
     $scope.$on('$routeChangeSuccess', (next, current) ->
-        ConfigService.deserialize($routeParams.config)
+        ConfigService.deserialize($location.search().q)
         JmxRefresher.disconnect()
         JmxRefresher.fetch_data()
     )
