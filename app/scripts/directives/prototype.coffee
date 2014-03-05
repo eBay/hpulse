@@ -33,7 +33,7 @@ angular.module("jmxRtMonApp").directive "prototype", ($compile, ConfigService, P
         return unless $scope.is_numeric
 
         plots = ConfigService.get(ConfigService.PLOTS_KEY)
-        _(plots).contains $scope.model.path
+        _(plots).findWhere key: $scope.model.path
 
       $scope.toggle = ->
         return unless $scope.is_numeric
@@ -41,10 +41,14 @@ angular.module("jmxRtMonApp").directive "prototype", ($compile, ConfigService, P
         plots = ConfigService.get(ConfigService.PLOTS_KEY)
         path = $scope.model.path
 
-        if _(plots).contains path
+        # Find if it exists
+        elem = _(plots).findWhere key: path
+        if elem
           # Remove from list
-          elem = _(plots).find (it) -> it == path
           idx = plots.indexOf(elem)
           plots.splice(idx, 1) if idx > -1
         else
-          plots.push path
+          # Add to list
+          plots.push {
+            key: path
+          }

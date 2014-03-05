@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
  
-    http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
  
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,17 +15,17 @@ limitations under the License.
 */
 
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+	background: #fafafa;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
 }
 
 .pointable {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 body {
-    padding-top: 70px;
+	padding-top: 70px;
 }
 
 #logobrand {
@@ -35,7 +35,7 @@ body {
 
 .jumbotron .subheading {
 	font-size: 20px;
-    margin-top: -20px;
+	margin-top: -20px;
 }
 
 .jumbotron img {
@@ -44,4 +44,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 
+}
+
+.plot {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.details {
+	margin-bottom: 10px;
 }
