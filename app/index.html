@@ -47,19 +47,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Realtime Hadoop Monitor</a>
+          <a class="navbar-brand" id="logobrand" href="#"><img src="images/logo@2x.png" height="33px"/></a>
         </div>
 
         <div class="navbar-collapse collapse" ng-controller="NavCtrl">
           <ul class="nav navbar-nav">
             <li ng-class="{active: ($route.current.tabname == 'beans')}">
-              <a class="pointable" ng-click="goToUrl('beans')">Select Data</a>
+              <a class="pointable" ng-click="goToBookmarkableUrl('beans')">Select Data</a>
             </li>
             <li ng-class="{active: ($route.current.tabname == 'plots')}">
-              <a class="pointable" ng-click="goToUrl('plots')">View Plots</a>
+              <a class="pointable" ng-click="goToBookmarkableUrl('plots')">View Plots</a>
             </li>
           </ul>
 
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-class="{active: ($route.current.tabname == 'faq')}">
+              <a class="pointable" ng-click="goToUrl('faq', false)">FAQ</a>
+            </li>
+          </ul>
         </div><!--/.nav-collapse -->
 
       </div>

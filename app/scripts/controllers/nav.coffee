@@ -17,10 +17,13 @@ limitations under the License.
 'use strict'
 
 angular.module('jmxRtMonApp').controller('NavCtrl', ($scope, $location, ConfigService) ->
-	$scope.goToUrl = (name) ->
+	$scope.goToBookmarkableUrl = (name) ->
 		console.log "Go to", name
 		$location.path("/#{name}")
 		$location.search(
 			q: ConfigService.serialize()
 		)
+	$scope.goToUrl = (name) ->
+		console.log "Go to", name
+		$location.path("/#{name}")
 )

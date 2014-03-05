@@ -30,6 +30,9 @@ angular.module('jmxRtMonApp', [
       templateUrl: 'views/plots.html'
       controller: 'PlotsCtrl'
       tabname: 'plots'
+    .when '/faq',
+      templateUrl: 'views/faq.html'
+      tabname: 'faq'
     .when '/',
       templateUrl: 'views/main.html'
       controller: 'MainCtrl'

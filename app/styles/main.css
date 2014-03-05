@@ -27,3 +27,20 @@ body {
 body {
     padding-top: 70px;
 }
+
+#logobrand {
+	padding: 0;
+	margin: 5px 10px;
+}
+
+.jumbotron .lead {
+	font-size: 20px;
+}
+
+.jumbotron img {
+	margin-left: -20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+}
