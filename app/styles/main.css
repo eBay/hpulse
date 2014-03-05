@@ -30,11 +30,12 @@ body {
 
 #logobrand {
 	padding: 0;
-	margin: 5px 10px;
+	margin: 7px 10px;
 }
 
-.jumbotron .lead {
+.jumbotron .subheading {
 	font-size: 20px;
+    margin-top: -20px;
 }
 
 .jumbotron img {
