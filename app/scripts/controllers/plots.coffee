@@ -17,10 +17,8 @@ limitations under the License.
 'use strict'
 
 angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $location, ConfigService, PlotStore) ->
-	$scope.JmxRefresher = JmxRefresher
-	$scope.$on('$routeChangeSuccess', (next, current) ->
-		ConfigService.deserialize($location.search().q)
-		JmxRefresher.connect()
+	$scope.$watch("ConfigService.settings", ->
+		$scope.plots = ConfigService.get(ConfigService.PLOTS_KEY)
 	)
 
 	$scope.$on("JmxRefresher.data_updated", (evt, result) ->
@@ -39,9 +37,6 @@ angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $lo
 			PlotStore.addDatapoint(path, metric)
 	)
 
-	$scope.$watch("ConfigService.settings", ->
-		$scope.plots = ConfigService.get(ConfigService.PLOTS_KEY)
-	)
 
 	$scope.removePlot = (plot) ->
 		idx = _($scope.plots).indexOf plot

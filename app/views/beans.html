@@ -1,10 +1,28 @@
-<div class="row">
+<div class="row" ng-controller="RefreshCtrl" ng-init="once=true">
 	<div ng-show="JmxRefresher.error" class="alert alert-danger">
 		<h5>Uh oh.</h5>
 		<p>{{JmxRefresher.error}}</p>
 	</div>
 
-	<h1>Available Beans</h1>
-	<p>Expand the tree below, and select the attributes you want to plot. Then click "View Plot" above.</p>
-	<tree model="displayTree"></tree>
+	<div class="col-lg-6">
+		<h1>Available Beans</h1>
+		<p>Expand the tree below, and select the attributes you want to plot. Then click "View Plot" above.</p>
+		<tree model="displayTree"></tree>
+	</div>
+
+	<div class="col-lg-6">
+		<h1>Selected Beans</h1>
+		<div ng-controller="PlotsCtrl">
+			<p>These have been selected for plotting</p>
+			<table class="table table-striped">
+				<tbody>
+					<tr ng-repeat="plot in plots">
+						<td>{{plot.key}}</td>
+						<td><a class="btn btn-xs btn-danger" ng-click="removePlot(plot)">Remove</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 </div>
