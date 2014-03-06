@@ -35,14 +35,8 @@ angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $lo
 			bean = _(result).find (b) -> b.name == bean_name
 			metric = bean[metric_name]
 
-			# Build a datapoint
-			dp = (
-				x: new Date()
-				y: metric
-			)
-
 			# Add the data in
-			PlotStore.addDatapoint(path, dp)
+			PlotStore.addDatapoint(path, metric)
 	)
 
 	$scope.$watch("ConfigService.settings", ->

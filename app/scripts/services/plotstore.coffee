@@ -25,16 +25,48 @@ angular.module('jmxRtMonApp').factory('PlotStore', ($timeout, $rootScope, Config
 	self = {}
 	self.plots = {}
 
-	self.addDatapoint = (path, dp) ->
-		# Create with Defaults
-		self.plots[path] = {
-			lastval: dp
-		}
+	HISTORYLENGTH = 100
+
+	self.addDatapoint = (path, val) ->
+		# Create if not exist
+		unless self.plots[path]
+			self.plots[path] = {
+				series: []
+			}
+
+		# Build a datapoint
+		dp = (
+			x: new Date()
+			y: val
+		)
+
+		# Append value
+		arr = self.plots[path].series
+		arr.push dp
+		if arr.length > HISTORYLENGTH
+			arr.shift() # Keep it at the right length
 
 	self.getLatestDatapoint = (path) ->
 		storage = self.plots[path]
 		return null unless storage
-		return storage.lastval
+		return storage.series[storage.series.length-1]
+
+	self.getLatestDifference = (path) ->
+		storage = self.plots[path]
+		return null unless storage
+
+		series = storage.series
+		return null unless series.length > 2
+
+		last = series[series.length-1]
+		penultimate = series[series.length-2]
+
+		return {
+			x: last.x,
+			y: last.y - penultimate.y
+		}
+
+
 
 	return self
 )

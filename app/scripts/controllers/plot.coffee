@@ -20,12 +20,14 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 	$scope.formattedPath = ->
 		path = $scope.plot.key
 		if path.match(/^Hadoop:service=/)
-			ret = path.replace('Hadoop:service=', '')
-			ret = ret.replace(',name=', '.')
-			ret = ret.replace('|', '.')
-			return ret
-		else
-			return path
+			path = path.replace('Hadoop:service=', '')
+			path = path.replace(',name=', '.')
+			path = path.replace('|', '.')
+
+		if $scope.plot.derivative_mode
+			path = "Δ " + path
+
+		return path
 
 	# Menu options
 	$scope.toggleDetails = ->
@@ -36,6 +38,15 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 		details = $scope.plot.show_details
 		return "Show Details" unless details
 		return "Hide Details"
+
+	$scope.toggleDerivative = ->
+		$scope.plot.derivative_mode = !$scope.plot.derivative_mode
+		$scope.$emit("ConfigService.config_changed")
+
+	$scope.titleForToggleDerivative = ->
+		deriv = $scope.plot.derivative_mode
+		return "Plot Derivative" unless deriv
+		return "Plot Absolute"
 
 	# Details
 	$scope.mostRecentValue = ->

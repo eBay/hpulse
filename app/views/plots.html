@@ -19,6 +19,7 @@
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<li><a class="pointable" ng-click="PlotCtrl.toggleDetails()">{{titleForToggleDetails()}}</a></li>
+					<li><a class="pointable" ng-click="PlotCtrl.toggleDerivative()">{{titleForToggleDerivative()}}</a></li>
 					<li class="divider"></li>
 					<li><a class="pointable" ng-click="PlotsCtrl.removePlot(plot)">Remove Plot</a></li>
 				</ul>
@@ -29,6 +30,6 @@
 			Most Recent Value=<code>{{PlotCtrl.mostRecentValue()}}</code>
 		</div>
 
-		<plot path="plot.key"></plot>
+		<plot settings="plot"></plot>
 	</div>
 </div>
