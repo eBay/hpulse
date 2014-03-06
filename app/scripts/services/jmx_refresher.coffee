@@ -41,7 +41,10 @@ angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, Con
 		)
 
 	self.connect = ->
-		return if self.connected # We're already connected
+		if self.connected # We're already connected
+			console.log "Already connected"
+			return
+		
 		self.connected = true
 
 		# Infinitely poll for new data
