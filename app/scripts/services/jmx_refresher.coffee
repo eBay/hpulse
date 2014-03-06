@@ -19,7 +19,7 @@ limitations under the License.
 angular.module('jmxRtMonApp').factory('JmxRefresher', ($timeout, $rootScope, ConfigService) ->
 	self = {}
 
-	self.error = undefined
+	self.error = "Still waiting for response... Server could be slow or unreachable."
 	self.connected = false
 	self.url = ->
 		return ConfigService.get(ConfigService.URL_KEY)
