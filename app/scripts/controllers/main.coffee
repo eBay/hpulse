@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
  
-    http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
  
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,18 +17,20 @@ limitations under the License.
 'use strict'
 
 angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigService, JmxRefresher) ->
-    $scope.$on('$routeChangeSuccess', ->
-        JmxRefresher.disconnect()
-    )
+	$scope.$on('$routeChangeSuccess', ->
+		JmxRefresher.disconnect()
+		ConfigService.setToDefault()
+	)
 
-    $scope.address = ""
+	$scope.address = ""
 
-    $scope.goToAddress = ->
-        ConfigService.set(ConfigService.URL_KEY, $scope.address)
-        $location.path("/beans")
-        $location.search(
-        	q: ConfigService.serialize()
-        )
+	$scope.goToAddress = ->
+		ConfigService.set(ConfigService.URL_KEY, $scope.address)
+		$location.path("/beans")
+		$location.search(
+			q: ConfigService.serialize()
+		)
 
-    return $scope
+
+	return $scope
 )

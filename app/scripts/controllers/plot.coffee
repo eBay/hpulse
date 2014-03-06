@@ -30,6 +30,7 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 	# Menu options
 	$scope.toggleDetails = ->
 		$scope.plot.show_details = !$scope.plot.show_details
+		$scope.$emit("ConfigService.config_changed")
 
 	$scope.titleForToggleDetails = ->
 		details = $scope.plot.show_details

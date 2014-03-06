@@ -14,24 +14,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ###
 
-angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope) ->
+angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $location) ->
 	self = {}
 
 	self.REFRESH_PERIOD_KEY = "refresh"
 	self.URL_KEY = "url"
 	self.PLOTS_KEY = "plots"
 
-	self.settings = {
-		"refresh": 200
-		"url": "http://localhost:50070/jmx"
-		"plots": []
-	}
+	self.settings = {}
+
+	$rootScope.$on("ConfigService.config_changed", ->
+		console.log "Got config_changed event, updating $location"
+		$location.search(
+			q: self.serialize()
+		)
+	)
 
 	self.set = (key, val) ->
 		self.settings[key] = val
 
 	self.get = (key) ->
 		return self.settings[key]
+
+	self.setToDefault = ->
+		self.settings = {
+			refresh: 200
+			url: "http://localhost:50070/jmx"
+			plots: []
+		}
 
 	self.serialize = ->
 		return encodeURIComponent(JSON.stringify(self.settings))

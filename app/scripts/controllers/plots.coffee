@@ -52,6 +52,6 @@ angular.module('jmxRtMonApp').controller 'PlotsCtrl', ($scope, JmxRefresher, $lo
 	$scope.removePlot = (plot) ->
 		idx = _($scope.plots).indexOf plot
 		$scope.plots.splice(idx, 1) if idx > -1
-
+		$scope.$emit("ConfigService.config_changed")
 
 	$scope.PlotsCtrl = $scope
