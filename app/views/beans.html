@@ -17,7 +17,7 @@
 			<table class="table table-striped">
 				<tbody>
 					<tr ng-repeat="plot in plots">
-						<td>{{plot.key}}</td>
+						<td><plotkey name="plot.key"></plotkey></td>
 						<td><a class="btn btn-xs btn-danger" ng-click="removePlot(plot)">Remove</a></td>
 					</tr>
 				</tbody>
