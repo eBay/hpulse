@@ -64,6 +64,11 @@
             <li ng-class="{active: ($route.current.tabname == 'faq')}">
               <a class="pointable" ng-click="goToUrl('faq', false)">FAQ</a>
             </li>
+            <li ng-controller="ConfigCtrl">
+              <a class="pointable" data-toggle="modal" data-target="#settings-modal">
+                <i class="fa fa-cog"></i> Settings
+              </a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
 
@@ -71,6 +76,52 @@
     </div>
 
     <div class="container" ng-view=""></div>
+
+    <!-- Large modal -->
+    <div id="settings-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">HPulse Settings</h4>
+          </div>
+          <div class="modal-body" ng-controller="ConfigCtrl">
+
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="jmx-url" class="col-sm-2 control-label">JMX URL</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="jmx-url" ng-model="settings.url" disabled>
+                </div>
+                <div class="col-sm-2">
+                  <a class="btn btn-default">Edit</a>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="refresh-period" class="col-sm-2 control-label">Refresh Period</label>
+                <div class="col-sm-3">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="refresh-period" ng-model="settings.refresh">
+                    <span class="input-group-addon">ms</span>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+            <hr/>
+
+            <h5>Raw:</h5>
+            <pre>{{settings}}</pre>
+
+            <div class="modal-footer">
+              <a class="btn btn-default" data-dismiss="modal">Close</a>
+              <a ng-class="{btn: true, 'btn-primary': true, disabled: is_synchronized}" ng-click="commit()">Commit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>

@@ -16,7 +16,18 @@ limitations under the License.
 
 'use strict'
 
-angular.module('jmxRtMonApp').controller 'ConfigCtrl', ($scope, ConfigService, $location) ->
+angular.module('jmxRtMonApp').controller 'ConfigCtrl', ($scope, ConfigService, $location, $timeout) ->
 	$scope.$watch('ConfigService.settings', ->
+		return unless ConfigService.settings
 		$scope.settings = ConfigService.settings
 	)
+
+	$scope.is_synchronized = true
+	$scope.commit = ->
+		console.log ConfigService.isSynchronized()
+		$scope.$emit('ConfigService.config_changed')
+		$scope.is_synchronized = true
+
+	$scope.$watch('settings', ->
+		$scope.is_synchronized = ConfigService.isSynchronized();
+	, true)

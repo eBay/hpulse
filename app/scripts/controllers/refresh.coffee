@@ -20,7 +20,7 @@ angular.module('jmxRtMonApp').controller 'RefreshCtrl', ($scope, JmxRefresher, $
 	$scope.JmxRefresher = JmxRefresher
 	$scope.$on('$routeChangeSuccess', (next, current) ->
 		console.log "Refresh?", $scope.once
-		ConfigService.deserialize($location.search().q)
+		ConfigService.deserialize()
 		if $scope.once
 			JmxRefresher.disconnect()
 			JmxRefresher.fetch_data()

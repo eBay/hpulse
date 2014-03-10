@@ -39,17 +39,30 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 	self.setToDefault = ->
 		self.settings = {
 			refresh: 200
-			url: "http://localhost:50070/jmx"
+			url: ""
 			plots: []
 		}
 
 	self.serialize = ->
 		return encodeURIComponent(JSON.stringify(self.settings))
 
-	self.deserialize = (str) ->
-		settings = JSON.parse(decodeURIComponent(str))
+	self.deserialize = ->
+		settings = JSON.parse(decodeURIComponent($location.search().q))
 		for own key,val of settings
 			self.set key, val
+
+	self.isSynchronized = ->
+		settings = JSON.parse(decodeURIComponent($location.search().q))
+		return angular.equals(settings, self.settings)
+
+	self.isConfigured = ->
+		settings = self.settings
+		return false unless settings
+
+		url = settings.url
+		return false unless url
+
+		return url != ''
 
 	return self
 )
