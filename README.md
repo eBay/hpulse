@@ -1,4 +1,4 @@
-# Hadoop Monitor
+![HPulse](http://i.imgur.com/GeXMtll.png)
 
 Realtime Monitoring of Hadoop through jmx json
 
@@ -6,13 +6,13 @@ Realtime Monitoring of Hadoop through jmx json
 
 ## Usage
 
-Visit [hadoopmonitor.herokuapp.com](hadoopmonitor.herokuapp.com)
+Visit [hpulse.io](http://hpulse.io)
 
 Enter the address of the cluster's json output of jmx. For example:
 
     Namenode running on port 50070: http://localhost:50070/jmx
 
-    (If you visit this link you should see raw json)
+    (If you visit this link you should see json)
 
 Then click Connect
 
