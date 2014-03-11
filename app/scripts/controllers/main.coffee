@@ -30,6 +30,10 @@ angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigS
 			q: ConfigService.serialize()
 		)
 
+	$scope.clearData = ->
+		$scope.address = ""
+		ConfigService.setToDefault()
+
 	$scope.MainCtrl = $scope
 	return $scope
 )
