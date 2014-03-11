@@ -22,34 +22,46 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 	self.PLOTS_KEY = "plots"
 
 	self.settings = {}
+	self.defaults = {
+		refresh: 200
+		seconds_to_remember: 40
+		url: ""
+		plots: []
+	}
 
-	$rootScope.$on("ConfigService.config_changed", ->
+	$rootScope.$on("ConfigService.request_location_update", ->
 		console.log "Got config_changed event, updating $location"
 		$location.search(
 			q: self.serialize()
 		)
+		$rootScope.$broadcast("ConfigService.location_updated")
 	)
 
+	# Deprecated, TODO: Remove
 	self.set = (key, val) ->
 		self.settings[key] = val
 
+	# Deprecated, TODO: Remove
 	self.get = (key) ->
 		return self.settings[key]
 
 	self.setToDefault = ->
 		console.log "Reset Settings to Default"
-		angular.copy({
-			refresh: 200
-			url: ""
-			plots: []
-		}, self.settings)
+		self.setTo self.defaults
+
+	self.setTo = (conf) ->
+		angular.copy(conf, self.settings)
+		$rootScope.$emit('ConfigService.request_location_update')
 
 	self.serialize = ->
 		return encodeURIComponent(JSON.stringify(self.settings))
 
 	self.deserialize = ->
 		settings = JSON.parse(decodeURIComponent($location.search().q))
-		angular.copy(settings, self.settings);
+		defaults = angular.copy(self.defaults)
+
+		merged = angular.extend(defaults, settings) # Ensures that all defaults will be present
+		angular.copy(merged, self.settings)
 
 	self.isConfigured = ->
 		settings = self.settings
@@ -60,6 +72,7 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 
 		return url != ''
 
-	self.setToDefault()
+	# Initialize settings as defaults
+	angular.copy(self.defaults, self.settings)
 	return self
 )

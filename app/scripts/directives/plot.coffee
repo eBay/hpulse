@@ -16,7 +16,7 @@ limitations under the License.
 
 'use strict'
 
-angular.module('jmxRtMonApp').directive 'plot', (PlotStore) ->
+angular.module('jmxRtMonApp').directive 'plot', (PlotStore, ConfigService, $rootScope) ->
 	restrict: "E"
 	replace: true
 	scope:
@@ -30,13 +30,16 @@ angular.module('jmxRtMonApp').directive 'plot', (PlotStore) ->
 	</div>
 	"""
 
+	controller: ($scope) ->
+		;
+
 	link: ($scope, iElement, iAttrs, controller) ->
 		canvas = iElement.find('.plot_canvas')[0]
 		smoothie = new SmoothieChart(
 			maxValueScale: 1.2
 			interpolation: 'linear'
-			minValue: 0
-			millisPerPixel:100
+			# minValue: 0
+			millisPerPixel: ConfigService.settings.seconds_to_remember*1000 / canvas.width
 		)
 		smoothie.streamTo(canvas, 300)
 
@@ -56,6 +59,12 @@ angular.module('jmxRtMonApp').directive 'plot', (PlotStore) ->
 			$scope.ts.append dp.x.getTime(), dp.y
 		, true)
 
+		$scope.$watch(->
+			return ConfigService.settings.seconds_to_remember
+		, ->
+			smoothie.options.millisPerPixel = ConfigService.settings.seconds_to_remember*1000 / canvas.width
+		)
+
 		$scope.$watch("settings.derivative_mode", ->
 			console.log "Deriv mode changed"
 			# Remove existing timeseries
@@ -67,4 +76,8 @@ angular.module('jmxRtMonApp').directive 'plot', (PlotStore) ->
 				linewidth: 3
 			)
 
+			if $scope.settings.derivative_mode
+				smoothie.options.minValue = undefined
+			else
+				smoothie.options.minValue = 0
 		)

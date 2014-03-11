@@ -95,8 +95,8 @@
                 <div class="col-sm-8">
                   <input type="text" class="form-control" id="jmx-url" ng-model="copy.url" disabled>
                 </div>
-                <div class="col-sm-2">
-                  <a class="btn btn-default">Edit</a>
+                <div class="col-sm-2" ng-controller="NavCtrl">
+                  <a ng-click="goToUrl('home')" class="btn btn-default" data-dismiss="modal">New</a>
                 </div>
               </div>
               <div class="form-group">
@@ -105,6 +105,15 @@
                   <div class="input-group">
                     <input type="number" class="form-control" id="refresh-period" ng-model="copy.refresh">
                     <span class="input-group-addon">ms</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="seconds-to-remember" class="col-sm-2 control-label">Seconds to Plot</label>
+                <div class="col-sm-3">
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="seconds-to-remember" ng-model="copy.seconds_to_remember">
+                    <span class="input-group-addon">sec</span>
                   </div>
                 </div>
               </div>

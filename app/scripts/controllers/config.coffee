@@ -31,11 +31,7 @@ angular.module('jmxRtMonApp').controller 'ConfigCtrl', ($scope, ConfigService, $
 	, true)
 
 	$scope.commit = ->
-		console.log "Sync to:", ConfigService.settings
-		angular.copy($scope.copy, $scope.settings)
-
-		$timeout ->
-			# Otherwise we get a race that clobbers changes
-			$scope.$emit('ConfigService.config_changed')
+		console.log "Sync"
+		ConfigService.setTo $scope.copy
 
 	$scope.ConfigCtrl = $scope

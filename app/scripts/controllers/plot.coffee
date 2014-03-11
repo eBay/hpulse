@@ -32,7 +32,7 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 	# Menu options
 	$scope.toggleDetails = ->
 		$scope.plot.show_details = !$scope.plot.show_details
-		$scope.$emit("ConfigService.config_changed")
+		$scope.$emit("ConfigService.request_location_update")
 
 	$scope.titleForToggleDetails = ->
 		details = $scope.plot.show_details
@@ -41,7 +41,7 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 
 	$scope.toggleDerivative = ->
 		$scope.plot.derivative_mode = !$scope.plot.derivative_mode
-		$scope.$emit("ConfigService.config_changed")
+		$scope.$emit("ConfigService.request_location_update")
 
 	$scope.titleForToggleDerivative = ->
 		deriv = $scope.plot.derivative_mode
