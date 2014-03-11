@@ -48,6 +48,38 @@ angular.module('jmxRtMonApp').controller 'PlotCtrl', ($scope, JmxRefresher, $loc
 		return "Plot Derivative" unless deriv
 		return "Plot Absolute"
 
+	$scope.boundsExist = ->
+		($scope.plot.minY or $scope.plot.minY is 0) or ($scope.plot.maxY or $scope.plot.maxY is 0)
+
+	# This function can be called as many times an necessary, but will commit only once the requisite
+	# time has passed
+	$scope.updatefn = _.debounce(->
+		$scope.$emit("ConfigService.request_location_update")
+	, 1000)
+
+	$scope.$watch('plot.minY + plot.maxY', ->
+		# We want to persist the changes, but not on every update. Instead we will debounce so that
+		# we don't flood the ConfigService with location updates
+		$scope.updatefn()
+	)
+
+	$scope.titleForToggleBounds = ->
+		if $scope.boundsExist()
+			return "Remove Y Bounds"
+		else
+			return "Pin Y Axis"
+
+	$scope.toggleBounds = ->
+		if $scope.boundsExist()
+			# Get rid of our bounds
+			delete $scope.plot["minY"]
+			delete $scope.plot["maxY"]
+		else
+			$scope.plot.minY = 0
+			$scope.plot.maxY = NaN
+
+		$scope.$emit("ConfigService.request_location_update")
+
 	# Details
 	$scope.mostRecentValue = ->
 		dp = PlotStore.getLatestDatapoint $scope.plot.key

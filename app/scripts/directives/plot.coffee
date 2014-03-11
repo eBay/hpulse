@@ -65,6 +65,13 @@ angular.module('jmxRtMonApp').directive 'plot', (PlotStore, ConfigService, $root
 			smoothie.options.millisPerPixel = ConfigService.settings.seconds_to_remember*1000 / canvas.width
 		)
 
+		$scope.$watch('settings.maxY + settings.minY', ->
+			return unless $scope.settings
+			console.log "Bounds changed", $scope.settings.minY, $scope.settings.maxY
+			smoothie.options.minValue = $scope.settings.minY
+			smoothie.options.maxValue = $scope.settings.maxY
+		)
+
 		$scope.$watch("settings.derivative_mode", ->
 			console.log "Deriv mode changed"
 			# Remove existing timeseries
@@ -76,8 +83,10 @@ angular.module('jmxRtMonApp').directive 'plot', (PlotStore, ConfigService, $root
 				linewidth: 3
 			)
 
-			if $scope.settings.derivative_mode
-				smoothie.options.minValue = undefined
-			else
-				smoothie.options.minValue = 0
+			# minY is not set, and not exactly zero, since 0 is falsy
+			if !$scope.settings.minY and $scope.settings.minY != 0
+				if $scope.settings.derivative_mode
+					smoothie.options.minValue = undefined
+				else
+					smoothie.options.minValue = 0
 		)

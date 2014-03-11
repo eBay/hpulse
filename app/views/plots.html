@@ -20,6 +20,7 @@
 				<ul class="dropdown-menu" role="menu">
 					<li><a class="pointable" ng-click="PlotCtrl.toggleDetails()">{{titleForToggleDetails()}}</a></li>
 					<li><a class="pointable" ng-click="PlotCtrl.toggleDerivative()">{{titleForToggleDerivative()}}</a></li>
+					<li><a class="pointable" ng-click="PlotCtrl.toggleBounds()">{{titleForToggleBounds()}}</a></li>
 					<li class="divider"></li>
 					<li><a class="pointable" ng-click="PlotsCtrl.removePlot(plot)">Remove Plot</a></li>
 				</ul>
@@ -28,6 +29,28 @@
 
 		<div class="details" ng-show="plot.show_details">
 			Most Recent Value=<code>{{PlotCtrl.mostRecentValue()}}</code>
+		</div>
+
+		<div class="details" ng-show="PlotCtrl.boundsExist()">
+			<form class="form" role="form">
+				<div class="row">
+					<div class="col-md-1">
+						<div class="form-group">
+							<label for="yMin">yMin:</label>
+							<input type="number" class="form-control" id="yMin" ng-model="plot.minY">
+						</div>
+					</div>
+
+					<div class="col-md-1">
+						<div class="form-group">
+							<label for="yMax">yMax:</label>
+							<input type="number" class="form-control" id="yMax" ng-model="plot.maxY">
+						</div>
+					</div>
+
+				</div>
+			</form>
+
 		</div>
 
 		<plot settings="plot"></plot>

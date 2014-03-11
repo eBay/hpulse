@@ -1,0 +1,54 @@
+<div id="settings-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">HPulse Settings</h4>
+      </div>
+      <div class="modal-body" ng-controller="ConfigCtrl">
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="jmx-url" class="col-sm-2 control-label">JMX URL</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="jmx-url" ng-model="copy.url" disabled>
+            </div>
+            <div class="col-sm-2" ng-controller="NavCtrl">
+              <a ng-click="goToUrl('home')" class="btn btn-default" data-dismiss="modal">New</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="refresh-period" class="col-sm-2 control-label">Refresh Period</label>
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input type="number" class="form-control" id="refresh-period" ng-model="copy.refresh">
+                <span class="input-group-addon">ms</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="seconds-to-remember" class="col-sm-2 control-label">Seconds to Plot</label>
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input type="number" class="form-control" id="seconds-to-remember" ng-model="copy.seconds_to_remember">
+                <span class="input-group-addon">sec</span>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+        <hr/>
+
+        <h5>Raw:</h5>
+        <pre>proposed: {{copy}}</pre>
+        <pre>current: {{settings}}</pre>
+
+        <div class="modal-footer">
+          <a class="btn btn-default" data-dismiss="modal">Close</a>
+          <a ng-class="{btn: true, 'btn-primary': true, disabled: synchronized}" ng-click="commit()">Commit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
