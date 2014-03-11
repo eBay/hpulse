@@ -10,9 +10,28 @@
 			<p>Enter the URL to your Namenode's webUI</p>
 			<form ng-submit="goToAddress()">
 				<div class="input-group">
+					<input type="text" class="form-control">
+					<div class="input-group-btn">
+					<button type="button" class="btn btn-default" tabindex="-1">Action</button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu pull-right" role="menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+					</div>
+				</div>
+				
+				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Address e.g. http://localhost:50070/jmx" ng-model="address"/>
 					<span class="input-group-btn">
 						<input type="submit" class="btn btn-primary" value="Connect"/>
+
 					</span>
 				</div>
 			</div>

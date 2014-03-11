@@ -37,23 +37,19 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 		return self.settings[key]
 
 	self.setToDefault = ->
-		self.settings = {
+		console.log "Reset Settings to Default"
+		angular.copy({
 			refresh: 200
 			url: ""
 			plots: []
-		}
+		}, self.settings)
 
 	self.serialize = ->
 		return encodeURIComponent(JSON.stringify(self.settings))
 
 	self.deserialize = ->
 		settings = JSON.parse(decodeURIComponent($location.search().q))
-		for own key,val of settings
-			self.set key, val
-
-	self.isSynchronized = ->
-		settings = JSON.parse(decodeURIComponent($location.search().q))
-		return angular.equals(settings, self.settings)
+		angular.copy(settings, self.settings);
 
 	self.isConfigured = ->
 		settings = self.settings
@@ -64,5 +60,6 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 
 		return url != ''
 
+	self.setToDefault()
 	return self
 )

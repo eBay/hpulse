@@ -19,10 +19,9 @@ limitations under the License.
 angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigService, JmxRefresher) ->
 	$scope.$on('$routeChangeSuccess', ->
 		JmxRefresher.disconnect()
-		ConfigService.setToDefault()
 	)
 
-	$scope.address = ""
+	$scope.address = ConfigService.settings.url
 
 	$scope.goToAddress = ->
 		ConfigService.set(ConfigService.URL_KEY, $scope.address)
@@ -31,6 +30,6 @@ angular.module('jmxRtMonApp').controller('MainCtrl', ($scope, $location, ConfigS
 			q: ConfigService.serialize()
 		)
 
-
+	$scope.MainCtrl = $scope
 	return $scope
 )

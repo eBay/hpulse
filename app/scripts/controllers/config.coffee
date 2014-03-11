@@ -17,17 +17,25 @@ limitations under the License.
 'use strict'
 
 angular.module('jmxRtMonApp').controller 'ConfigCtrl', ($scope, ConfigService, $location, $timeout) ->
-	$scope.$watch('ConfigService.settings', ->
-		return unless ConfigService.settings
-		$scope.settings = ConfigService.settings
-	)
-
-	$scope.is_synchronized = true
-	$scope.commit = ->
-		console.log ConfigService.isSynchronized()
-		$scope.$emit('ConfigService.config_changed')
-		$scope.is_synchronized = true
+	$scope.settings = ConfigService.settings
+	$scope.copy = {}
+	$scope.synchronized = false
 
 	$scope.$watch('settings', ->
-		$scope.is_synchronized = ConfigService.isSynchronized();
+		angular.copy($scope.settings, $scope.copy)
+		$scope.synchronized = true
 	, true)
+
+	$scope.$watch('copy', ->
+		$scope.synchronized = angular.equals($scope.settings, $scope.copy)
+	, true)
+
+	$scope.commit = ->
+		console.log "Sync to:", ConfigService.settings
+		angular.copy($scope.copy, $scope.settings)
+
+		$timeout ->
+			# Otherwise we get a race that clobbers changes
+			$scope.$emit('ConfigService.config_changed')
+
+	$scope.ConfigCtrl = $scope

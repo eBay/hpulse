@@ -13,7 +13,7 @@
     "underscore": "~1.5.2",
     "d3": "~3.3.8",
     "font-awesome": "~4.0.0",
-    "bootstrap": "~3.0.0",
+    "bootstrap": "~>3.1",
     "smoothie-bower": "~1.19.0"
   },
   "devDependencies": {

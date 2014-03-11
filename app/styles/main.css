@@ -25,17 +25,16 @@ body {
 }
 
 body {
-	padding-top: 70px;
 }
 
-#logobrand {
-	padding: 0;
-	margin: 7px 10px;
+#logobrand img {
+	margin-top: -5px;
 }
 
 .jumbotron .subheading {
-	font-size: 20px;
-	margin-top: -20px;
+	font-size: 18px;
+	margin-top: -10px;
+	margin-bottom: 20px;
 }
 
 .jumbotron img {
