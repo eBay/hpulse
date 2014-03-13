@@ -19,6 +19,7 @@ function randomIncrement(uniqueid) {
 	}
 
 	incrementables[uniqueid] += makeRand(0, 30);
+	return incrementables[uniqueid];
 }
 
 app.get('/jmx', function(req, res){
@@ -425,12 +426,12 @@ app.get('/jmx', function(req, res){
 			"GcTimeMillisMarkSweepCompact" : 57,
 			"GcCount" : 118,
 			"GcTimeMillis" : 577,
-			"ThreadsNew" : 0,
-			"ThreadsRunnable" : 6,
-			"ThreadsBlocked" : 0,
-			"ThreadsWaiting" : 8,
-			"ThreadsTimedWaiting" : 12,
-			"ThreadsTerminated" : 0,
+			"ThreadsNew" : makeRand(0, 10),
+			"ThreadsRunnable" : makeRand(28, 30),
+			"ThreadsBlocked" : makeRand(0, 2),
+			"ThreadsWaiting" : makeRand(0, 2),
+			"ThreadsTimedWaiting" : makeRand(0, 1),
+			"ThreadsTerminated" : makeRand(0, 1),
 			"LogFatal" : 0,
 			"LogError" : 0,
 			"LogWarn" : 8,
