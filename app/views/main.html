@@ -28,7 +28,6 @@
 	</div>
 </div>
 
-
 <hr/>
 
 <div class="row">
@@ -36,16 +35,31 @@
 		<h2>Overview</h2>
 	</div>
 	<div class="col-md-6">
-		<h4>HPulse does not:</h4>
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title">HPulse does not:</h3>
+	</div>
+	<div class="panel-body">
 		<p><span class="emph-danger">✘</span> Remember data from months ago forever in HDFS</p>
 		<p><span class="emph-danger">✘</span> Do any learning, try to be clever</p>
 		<p><span class="emph-danger">✘</span> Modify the cluster</p>
 	</div>
+</div>
+
+	</div>
 	<div class="col-md-6">
-		<h4>HPulse does:</h4>
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title">HPulse does:</h3>
+	</div>
+	<div class="panel-body">
 		<p><span class="emph">✓</span> Present data from minutes ago to <span class="emph">now</span></p>
 		<p><span class="emph">✓</span> Provide sub-second sampling to catch transient events</p>
 		<p><span class="emph">✓</span> Work with any compatable Hadoop install (see <a href="#/faq">FAQ</a>)</p>
+	</div>
+</div>
+
+
 	</div>
 </div>
 
@@ -66,7 +80,7 @@
 	<div class="col-md-4">
 		<h4>Deep Linking</h4>
 		<p>Once you get started, the URL will contain all the information needed to rehydrate the view.</p>
-		<p>Share by email, wiki, etc</p>
+		<p>Share by email, wiki, stone carvings, you name it! Click the demo links to see it in action.</p>
 	</div>
 	<div class="col-md-4">
 		<h4>Project</h4>
@@ -76,4 +90,28 @@
 			View Project on Github
 		</a>
 	</div>
+</div>
+
+<hr/>
+
+<div class="row">
+	<div class="col-md-12">
+		<h1>Demo Links</h1>
+		<p class="lead">Here are some things you can monitor with HPulse:</p>
+	</div>
+	<div class="col-md-12 text-center">
+		<a class="btn btn-primary" href="http://hpulse.io/#/plots?q=%257B%2522refresh%2522%253A300%252C%2522seconds_to_remember%2522%253A30%252C%2522url%2522%253A%2522http%253A%252F%252Ffakenamenode.herokuapp.com%252Fjmx%2522%252C%2522plots%2522%253A%255B%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DRpcActivityForPort8020%257CCallQueueLength%2522%252C%2522derivative_mode%2522%253Afalse%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DRpcActivityForPort8020%257CRpcProcessingTimeAvgTime%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DRpcActivityForPort8020%257CRpcProcessingTimeNumOps%2522%252C%2522minY%2522%253A0%252C%2522maxY%2522%253A600%257D%255D%252C%2522note%2522%253A%2522We%2520can%2520infer%2520Namenode%2520contention%2520from%2520the%2520call%2520queue%2520length.%2520(This%2520is%2520fake%2520data.%2520When%2520you're%2520ready%252C%2520go%2520to%2520the%2520home%2520page%2520and%2520load%2520up%2520your%2520real%2520Namenode's%2520data!)%2522%257D">Call Queue Contention</a>
+		<a class="btn btn-primary" href="http://hpulse.io/#/plots?q=%257B%2522refresh%2522%253A200%252C%2522seconds_to_remember%2522%253A40%252C%2522url%2522%253A%2522http%253A%252F%252Ffakenamenode.herokuapp.com%252Fjmx%2522%252C%2522plots%2522%253A%255B%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DJvmMetrics%257CThreadsRunnable%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DJvmMetrics%257CThreadsBlocked%2522%252C%2522minY%2522%253A0%252C%2522maxY%2522%253A30%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DJvmMetrics%257CThreadsWaiting%2522%252C%2522minY%2522%253A0%252C%2522maxY%2522%253A30%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DJvmMetrics%257CMemNonHeapUsedM%2522%252C%2522minY%2522%253A0%252C%2522maxY%2522%253A30%257D%252C%257B%2522key%2522%253A%2522java.lang%253Atype%253DOperatingSystem%257CSystemCpuLoad%2522%257D%255D%252C%2522note%2522%253A%2522JVM%2520provided%2520bean%2520are%2520useful%2520for%2520monitoring%2520system%2520performance.%2520(This%2520is%2520fake%2520data.%2520When%2520you're%2520ready%252C%2520go%2520to%2520the%2520home%2520page%2520and%2520load%2520up%2520your%2520real%2520data!)%2522%257D">Threading / Memory / CPU</a>
+		<a class="btn btn-primary" href="http://hpulse.io/#/plots?q=%257B%2522refresh%2522%253A500%252C%2522seconds_to_remember%2522%253A20%252C%2522url%2522%253A%2522http%253A%252F%252Ffakenamenode.herokuapp.com%252Fjmx%2522%252C%2522plots%2522%253A%255B%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DFSNamesystemState%257CCapacityTotal%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DFSNamesystemState%257CCapacityUsed%2522%252C%2522derivative_mode%2522%253Atrue%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DFSNamesystemState%257CCapacityRemaining%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DFSNamesystemState%257CTotalLoad%2522%257D%255D%252C%2522note%2522%253A%2522Here%2520we're%2520looking%2520at%2520capacity.%2520Notice%2520how%2520we're%2520plotting%2520the%2520derivative%2520of%2520NameNode.FSNamesystemState.CapacityUsed.%2520(This%2520is%2520fake%2520data.%2520When%2520you're%2520ready%252C%2520go%2520to%2520the%2520home%2520page%2520and%2520load%2520up%2520your%2520real%2520data!)%2522%257D">Capacity</a>
+		<a class="btn btn-primary" href="http://hpulse.io/#/plots?q=%257B%2522refresh%2522%253A500%252C%2522seconds_to_remember%2522%253A20%252C%2522url%2522%253A%2522http%253A%252F%252Ffakenamenode.herokuapp.com%252Fjmx%2522%252C%2522plots%2522%253A%255B%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CCreateFileOps%2522%252C%2522derivative_mode%2522%253Atrue%252C%2522show_details%2522%253Atrue%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CGetListingOps%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CAddBlockOps%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CAllowSnapshotOps%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CBlockReportNumOps%2522%257D%252C%257B%2522key%2522%253A%2522Hadoop%253Aservice%253DNameNode%252Cname%253DNameNodeActivity%257CFilesDeleted%2522%257D%255D%252C%2522note%2522%253A%2522Here%2520we're%2520tracking%2520the%2520total%2520number%2520of%2520operations%2520for%2520each%2520type.%2520Try%2520changing%2520some%2520of%2520the%2520other%2520plots%2520to%2520Derivative%2520Mode%2520like%2520we've%2520done%2520for%2520the%2520first%2520one.%2520(This%2520is%2520fake%2520data.%2520When%2520you're%2520ready%252C%2520go%2520to%2520the%2520home%2520page%2520and%2520load%2520up%2520your%2520real%2520data!)%2522%257D">Operation Types</a>
+	</div>
+
+	<div class="col-md-12 text-center">
+		<h5>Or:</h5>
+		<a class="btn btn-primary" href="http://hpulse.io/#/beans?q=%257B%2522refresh%2522%253A500%252C%2522seconds_to_remember%2522%253A20%252C%2522url%2522%253A%2522http%253A%252F%252Ffakenamenode.herokuapp.com%252Fjmx%2522%252C%2522plots%2522%253A%255B%255D%252C%2522note%2522%253A%2522This%2520is%2520fake%2520data.%2520When%2520you're%2520ready%252C%2520go%2520to%2520the%2520home%2520page%2520and%2520load%2520up%2520your%2520real%2520data!%2522%257">
+			Build Your Own
+			<i class="fa fa-chevron-right"></i>
+		</a>
+	</div>
+
 </div>
