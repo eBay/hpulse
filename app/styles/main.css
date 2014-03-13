@@ -54,3 +54,13 @@ h1, h2, h3, h4, h5, h6 {
 .details {
 	margin-bottom: 10px;
 }
+
+.emph {
+	font-weight: bold;
+	color: #39B54A;
+}
+
+.emph-danger {
+	font-weight: bold;
+	color: #C62817;
+}

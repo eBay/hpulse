@@ -27,6 +27,7 @@ angular.module('jmxRtMonApp').factory('ConfigService', ($timeout, $rootScope, $l
 		seconds_to_remember: 40
 		url: ""
 		plots: []
+		note: ""
 	}
 
 	$rootScope.$on("ConfigService.request_location_update", ->

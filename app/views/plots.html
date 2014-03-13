@@ -4,6 +4,11 @@
 		<p>{{JmxRefresher.error}}</p>
 	</div>
 
+	<div ng-controller="ConfigCtrl" ng-show="ConfigCtrl.settings.note" class="alert alert-info">
+		<h5>User Defined Note <a href="#settings-modal" data-toggle="modal" data-target="#settings-modal">Edit</a></h5>
+		<p>{{ConfigCtrl.settings.note}}</p>
+	</div>
+
 
 	<h1>Plots</h1>
 	<div ng-hide="plots.length" class="alert alert-warning">

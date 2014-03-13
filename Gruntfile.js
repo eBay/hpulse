@@ -1,5 +1,6 @@
 // Generated on 2013-10-21 using generator-angular 0.5.0
 'use strict';
+var shell = require('shelljs');
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -331,6 +332,18 @@ module.exports = function (grunt) {
     // 'rev',
     'usemin'
   ]);
+
+  // Prepare files needed for hosting with github pages
+  grunt.registerTask('githubpages', function(target){
+    shell.echo("hpulse.io").to("dist/CNAME");
+    shell.exec("touch dist/.nojekyll");
+  });
+
+  grunt.registerTask('deploy', [
+    'build',
+    'githubpages'
+  ]);
+
 
   grunt.registerTask('default', [
     'jshint',
